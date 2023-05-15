@@ -24,6 +24,8 @@ userService.getProfile = async (token) =>{
   return (await axios.get(global.BASE_URL + `/usuarios/getprofile`, config))
     .data;
 }
+
+
 userService.updateProfile = async (token, data) => {
   const config = {
     headers: {
@@ -34,8 +36,6 @@ userService.updateProfile = async (token, data) => {
   const body = {
     nombre: data.nombre,
     apellidos: data.apellidos,
-    edad: data.edad,
-    email: data.email,
     fecha_de_nacimiento: data.fecha_de_nacimiento,
     telefono: data.telefono,
     password: data.password,

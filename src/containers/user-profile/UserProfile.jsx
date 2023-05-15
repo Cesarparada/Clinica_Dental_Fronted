@@ -43,6 +43,7 @@ export default function UserProfile() {
     try {
       const response = await userService.getProfile(token);
       setUser(response);
+      console.log(response)
     } catch (error) {
       console.log(error);
     }
@@ -74,10 +75,11 @@ export default function UserProfile() {
         </Card>
       )}
     </div>
+    {!modifyProfile && (
     <div>
       <Button variant="warning" onClick={handleChangeProfile}>Modificar Perfil</Button>
       </div>
-
+)}
       {modifyProfile && (
       <Form onSubmit={handleSubmit} className="padreBtn">
         <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>
@@ -116,15 +118,6 @@ export default function UserProfile() {
             placeholder="00-000000000"
             name="telefono"
             value={formValues.telefono}
-            onChange={handleChange}
-          />
-          <br />
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="ejemplo@correo.mail"
-            name="email"
-            value={formValues.email}
             onChange={handleChange}
           />
           <br />
