@@ -19,7 +19,7 @@ useEffect(()=> {
   if(isLoggedIn && isPatient){
     getCitasPaciente(authState.userToken);
   }else if (isLoggedIn && isOdontologo){
-    getCitasOdontolos(authState.userToken);
+    getCitasOdontologos(authState.userToken);
   }else{
     navigate("");
   }
@@ -30,9 +30,20 @@ const handleCitas = (e) => {
   console.log(dataId);
 };
 
-  const getCitasPaciente = async (token) => {
+//funcion que llama al servicio citas paciente
+const getCitasPaciente = async (token) => {
+  try{
+    const response = await citaService.getCitasPaciente(token);
+    setCita(response.cita);
+  }catch(error){
+    console.log(error);
+  }
+};
+
+//funcion que llama al servicio citas odontologo
+  const getCitasOdontologos = async (token) => {
     try{
-      const response = await citaService.getCitasPaciente(token);
+      const response = await citaService.getCitasOdontologo(token);
       setCita(response.cita);
     }catch(error){
       console.log(error);
@@ -41,9 +52,22 @@ const handleCitas = (e) => {
 
 
 
+
+
   return (
     <>
     <div>
+    
+        {isOdontologo && (
+          <DataListTable
+            data={cita}
+            title="Tus citas"
+            headers={["ID cita", "ID paciente", "Fecha", "Hora"]}
+            attributes={["id", "id_paciente", "fecha", "horario"]}
+            onChange={handleCitas}
+          />
+        )}
+      
     {isPatient && (
           <div className="container">
             
@@ -55,9 +79,24 @@ const handleCitas = (e) => {
                 onChange={handleCitas}
               />
             
-            
-             
-            
+            {/* <div className="contenedor-botones">
+                <div>
+                  <button type="submit" onClick={handleFormCreateCita}>
+                    Crear cita
+                  </button>
+                </div>
+                <div>
+                  <button type="submit" onClick={handleFormUpdateCita}>
+                    Modificar cita
+                  </button>
+                </div>
+                <div>
+                  <button type="submit" onClick={handleFormDeleteCita}>
+                    Eliminar Cita
+                  </button>
+                </div>
+              </div>
+           */}
           </div>
         )}
 
