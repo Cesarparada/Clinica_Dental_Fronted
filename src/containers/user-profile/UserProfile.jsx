@@ -4,7 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import userService from "../../_services/userService";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 export default function UserProfile() {
@@ -43,7 +43,7 @@ export default function UserProfile() {
     try {
       const response = await userService.getProfile(token);
       setUser(response);
-      console.log(response)
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -51,91 +51,93 @@ export default function UserProfile() {
 
   return (
     <>
-    <div>
-      {!modifyProfile && (
-        <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+      <div>
+        {!modifyProfile && (
+          <Card style={{ width: "18rem" }}>
+            <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 
-          <Card.Body>
-            <Card.Title>Perfil del Usuario</Card.Title>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroup.Item>Nombre: {user.nombre}</ListGroup.Item>
-            <ListGroup.Item>Apellidos: {user.apellidos}</ListGroup.Item>
-            <ListGroup.Item>
-              Fecha de Nacimiento: <br /> {user.fecha_de_nacimiento}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              Teléfono: <br /> {user.telefono}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              Email: <br /> {user.email}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card>
-      )}
-    </div>
-    {!modifyProfile && (
-    <div>
-      <Button variant="warning" onClick={handleChangeProfile}>Modificar Perfil</Button>
+            <Card.Body>
+              <Card.Title>Perfil del Usuario</Card.Title>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroup.Item>Nombre: {user.nombre}</ListGroup.Item>
+              <ListGroup.Item>Apellidos: {user.apellidos}</ListGroup.Item>
+              <ListGroup.Item>
+                Fecha de Nacimiento: <br /> {user.fecha_de_nacimiento}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                Teléfono: <br /> {user.telefono}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                Email: <br /> {user.email}
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        )}
       </div>
-)}
+      {!modifyProfile && (
+        <div>
+          <Button variant="info" onClick={handleChangeProfile}>
+            Modificar Perfil
+          </Button>
+        </div>
+      )}
       {modifyProfile && (
-      <Form onSubmit={handleSubmit} className="padreBtn">
-        <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>
-          {JSON.stringify(formValues, null, 2)}
-        </pre>
-        <Form.Group className="mb-3">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Nombre"
-            name="nombre"
-            value={formValues.nombre}
-            onChange={handleChange}
-          />
+        <Form onSubmit={handleSubmit} className="padreBtn">
+          <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>
+            {JSON.stringify(formValues, null, 2)}
+          </pre>
+          <Form.Group className="mb-3">
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Nombre"
+              name="nombre"
+              value={formValues.nombre}
+              onChange={handleChange}
+            />
+            <br />
+            <Form.Label>Apellidos</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Apellidos"
+              name="apellidos"
+              value={formValues.apellidos}
+              onChange={handleChange}
+            />
+            <br />
+            <Form.Label>Fecha de Nacimiento</Form.Label>
+            <Form.Control
+              type="date"
+              name="fecha_de_nacimiento"
+              value={formValues.fecha_de_nacimiento}
+              onChange={handleChange}
+            />
+            <br />
+            <Form.Label>Número de Teléfono</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="00-000000000"
+              name="telefono"
+              value={formValues.telefono}
+              onChange={handleChange}
+            />
+            <br />
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="***********"
+              name="password"
+              value={formValues.password}
+              onChange={handleChange}
+            />
+          </Form.Group>
           <br />
-          <Form.Label>Apellidos</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Apellidos"
-            name="apellidos"
-            value={formValues.apellidos}
-            onChange={handleChange}
-          />
-          <br />
-          <Form.Label>Fecha de Nacimiento</Form.Label>
-          <Form.Control
-            type="date"
-            name="fecha_de_nacimiento"
-            value={formValues.fecha_de_nacimiento}
-            onChange={handleChange}
-          />
-          <br />
-          <Form.Label>Número de Teléfono</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="00-000000000"
-            name="telefono"
-            value={formValues.telefono}
-            onChange={handleChange}
-          />
-          <br />
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="***********"
-            name="password"
-            value={formValues.password}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <br />
-        <Button variant="primary" type="submit">
-          Subir Cambios
-        </Button>
-      </Form>
-      ) }
-      </>
+          <Button variant="primary" type="submit">
+            Subir Cambios
+          </Button>
+        </Form>
+      )}
+    </>
   );
 }
