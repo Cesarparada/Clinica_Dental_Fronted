@@ -77,7 +77,7 @@ export default function UserProfile() {
       </div>
       {!modifyProfile && (
         <div>
-          <Button variant="info" onClick={handleChangeProfile}>
+          <Button variant="primary" onClick={handleChangeProfile}>
             Modificar Perfil
           </Button>
         </div>

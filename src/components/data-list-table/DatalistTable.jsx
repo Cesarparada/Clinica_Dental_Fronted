@@ -24,25 +24,18 @@ export default function DataListTable({
                   </th>
                </tr>
                <tr>
-                  {headers.map((th, index) => (
-                     <th key={index}>{th}</th>
-                  ))}
+                  {headers.map((th, index) => (<th key={index}>{th}</th>))}
                </tr>
             </thead>
 
             <tbody>
-               {data.map((d) => (
-                  <tr data-user-id={d.id} onClick={onChange} key={d.id}>
-                     {attributes.map((attr, index) => (
-                        <td key={index}>{d[attr]}</td>
+            {data.map((d) => (
+              <tr scope="row" data-data-id={d.id} onClick={onChange} key={d.id}>
+                {attributes.map((attr, index) => (
+                  <td data-label={headers[index]} key={index}>
+                    {d[attr] ? d[attr] : "No definido"}
+                        </td>
                      ))}
-
-                     {/* <td>{user.id}</td>
-                     <td>{user.nombre}</td>
-                     <td>{user.apellidos}</td>
-                     <td>{user.email}</td>
-                     <td>{dateFormat(user.fecha_nacimiento)}</td>
-                     <td>{user?.alumno ? "YES" : "NO"}</td> */}
                   </tr>
                ))}
             </tbody>
