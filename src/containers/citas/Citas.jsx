@@ -79,7 +79,7 @@ const getCitasPaciente = async (token) => {
                 onChange={handleCitas}
               />
             
-            {/* <div className="contenedor-botones">
+            <div className="contenedor-botones">
                 <div>
                   <button type="submit" onClick={handleFormCreateCita}>
                     Crear cita
@@ -96,9 +96,10 @@ const getCitasPaciente = async (token) => {
                   </button>
                 </div>
               </div>
-           */}
           </div>
         )}
+
+
 
     </div>
     </>
