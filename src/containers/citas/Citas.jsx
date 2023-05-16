@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import citaService from '../../_services/citaService';
 import { useSelector } from 'react-redux';
 import { DataListTable } from '../../components';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function Citas() {
 //hooks
@@ -12,6 +14,12 @@ const isLoggedIn = authState.isLoggedIn;
 const isOdontologo = authState.userInfo.role == "odontologo";
 const isPatient = authState.userInfo.role =="user";
 const [cita, setCita] = useState([]);
+const [idCita, setIdCita] = useState();
+  const [formValues, setFormValues] = useState({});
+  const [formCreateCita, setCreateCita] = useState(false);
+  const [formUpdateCita, setFormUpdateCita] = useState(false);
+  const [formDeleteCita, setFormDeleteCita] = useState(false);
+
 
 
 
@@ -30,6 +38,65 @@ const handleCitas = (e) => {
   console.log(dataId);
 };
 
+
+//handler para escuchar cambio en inputs
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormValues({
+    ...formValues,
+    [name]: value, // key: value
+  });
+};
+
+const handleChangeIdCita = (e) => {
+  const { value } = e.target;
+  setIdCita(value);
+  console.log(idCita);
+};
+
+const handleDeleteCita = (e) => {
+  const { value } = e.target;
+  setIdCita(value);
+  console.log(idCita);
+};
+
+//handlers que cambian el valor para pintar y ocultar formularios
+
+const handleFormUpdateCita = () => {
+  setFormUpdateCita(true);
+  setCreateCita(false);
+  setFormDeleteCita(false);
+};
+
+const handleFormDeleteCita = () => {
+  setFormDeleteCita(true);
+  setCreateCita(false);
+  setFormUpdateCita(false);
+
+};
+
+const handleFormCreateCita = () => {
+  setCreateCita(true);
+  setFormUpdateCita(false);
+  setFormDeleteCita(false);
+
+};
+
+//Handlers que llaman a la funcion para ejecutar la peticion
+
+const handleSubmitUpdate = () => {
+  updateCita(authState.userToken, formValues, idCita);
+};
+
+const handleSubmitCreate = () => {
+  createCita(authState.userToken, formValues);
+};
+
+const handleSubmitDelete = () => {
+  deleteCita(authState.userToken, idCita);
+};
+
 //funcion que llama al servicio citas paciente
 const getCitasPaciente = async (token) => {
   try{
@@ -41,16 +108,42 @@ const getCitasPaciente = async (token) => {
 };
 
 //funcion que llama al servicio citas odontologo
-  const getCitasOdontologos = async (token) => {
-    try{
-      const response = await citaService.getCitasOdontologo(token);
-      setCita(response.cita);
-    }catch(error){
+const getCitasOdontologos = async (token) => {
+  try{
+    const response = await citaService.getCitasOdontologo(token);
+    setCita(response.cita);
+  }catch(error){
+    console.log(error);
+  }
+};
+
+
+//funcion que llama al servicio crear citas 
+const createCita = async (token, body) => {
+  try {
+    const response = await citaService.createCita(token, body);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//funcion que llama al servicio modificar citas 
+const updateCita = async (token, data, idCita) => {
+  try {
+    const response = await citaService.updateCita(token, data, idCita);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//funcion que llama al servicio eliminar citas 
+  const deleteCita = async (token, idCita) => {
+    try {
+      const response = await citaService.deleteCita(token, idCita);
+    } catch (error) {
       console.log(error);
     }
   };
-
-
 
 
 
@@ -68,7 +161,7 @@ const getCitasPaciente = async (token) => {
           />
         )}
       
-    {isPatient && (
+          {isPatient && (
           <div className="container">
             
               <DataListTable
@@ -99,7 +192,114 @@ const getCitasPaciente = async (token) => {
           </div>
         )}
 
+          {formUpdateCita && (
+          <div className="container">
+            <div className="form-citas">
+              <Form onSubmit={handleSubmitUpdate} className="padreBtn">
+                <Form.Group className="mb-3  rounded p-4 inputForm">
+                  <Form.Label></Form.Label>
+                  <Form.Label>Identificador de cita</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="5"
+                    name="idCita"
+                    onChange={handleChangeIdCita}
+                  />
+                  <Form.Label>Día de la cita</Form.Label>
+                  <Form.Control
+                    type="date"
+                    placeholder="fecha"
+                    name="fecha"
+                    value={formValues.fecha}
+                    onChange={handleChange}
+                  />
+                  <Form.Label>Horario </Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="10:00:00 "
+                    name="horario"
+                    value={formValues.horario}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="buttonUpdate"
+                >
+                  Modificar
+                </Button>
+              </Form>
+            </div>
+          </div>
+        )}
+        {formDeleteCita && (
+          <div className="container">
+            <div className="form-citas">
+              <Form onSubmit={handleSubmitDelete} className="padreBtn">
+                <Form.Group className="mb-3  rounded p-4 inputForm">
+                  <Form.Label></Form.Label>
+                  <Form.Label>Identificador de cita</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="5"
+                    name="idCita"
+                    onChange={handleDeleteCita}
+                  />
+                </Form.Group>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="buttonUpdate"
+                >
+                  Eliminar
+                </Button>
+              </Form>
+            </div>
+          </div>
+        )}
+        {formCreateCita && (
+          <div className="container">
+            <div className="form-citas">
+              <Form onSubmit={handleSubmitCreate} className="padreBtn">
+                <Form.Group className="mb-3  rounded p-4 inputForm">
+                  <Form.Label>id_odontologo</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="id_odontologo "
+                    name="id_odontologo"
+                    value={formValues.id_odontologo}
+                    onChange={handleChange}
+                  />
+                  <Form.Label>Día de la cita</Form.Label>
+                  <Form.Control
+                    type="date"
+                    placeholder="fecha"
+                    name="fecha"
+                    value={formValues.fecha}
+                    onChange={handleChange}
+                  />
+                  <Form.Label>Horario </Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="10:00:00 "
+                    name="horario"
+                    value={formValues.horario}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="buttonUpdate"
+                >
+                  Crear cita
+                </Button>
+              </Form>
+            </div>
+          </div>
+        )}
 
     </div>
     </>
