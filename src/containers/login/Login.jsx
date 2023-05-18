@@ -66,7 +66,7 @@ export default function Login() {
   return (
     <div className="contenedor-form"> 
     
-    <div className="login-form">
+    <div className="login-form form">
       <img src="/_imagenes/diente_login.png" className="logo-login" alt="logo_login" />
       <h1>Bienvenido</h1>
       {/* <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>

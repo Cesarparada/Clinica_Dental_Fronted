@@ -1,6 +1,7 @@
 body {
   background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0)),
     url(/_imagenes/background.jpg);
+  background-repeat: no-repeat;
 }
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -31,7 +32,26 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
+.contenedor-form {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form{
+  text-align: center;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      130deg,
+      rgba(255, 255, 255, 1) 35%,
+      rgba(135, 134, 124, 0.9108018207282913) 100%
+    );
+    -webkit-box-shadow: 35px 43px 20px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 35px 43px 20px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 35px 43px 20px -5px rgba(0, 0, 0, 0.5);
+}
 button {
   border-radius: 10px;
   border: 1px solid transparent;
@@ -39,13 +59,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  // background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
   border-color: #a17600;
-  box-shadow: 0 8px 16px 0 rgba(157, 137, 20, 0.395),
+  box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.733),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 button:focus,
