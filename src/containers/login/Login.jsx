@@ -3,6 +3,7 @@ import authService from "../../_services/authService";
 import { updateAuthStoreStateLogIn } from "../../features/authentication/updateAuthState";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import './Login.scss';
 
 export default function Login() {
   const initialFormValues = {
@@ -63,22 +64,27 @@ export default function Login() {
 
   // RETURN
   return (
-    <div>
-      <h1>Login</h1>
-      <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>
+    <div className="contenedor-form"> 
+    
+    <div className="login-form">
+      <img src="/_imagenes/diente_login.png" className="logo-login" alt="logo_login" />
+      <h1>Bienvenido</h1>
+      {/* <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>
         {JSON.stringify(formValues, null, 2)}
-      </pre>
+      </pre> */}
+     
       <form noValidate onSubmit={handleSubmit}>
         <label htmlFor="">Email</label> <br />
-        <input
+        <input style={{background:"#36455a"}}
           type="email"
           name="email"
           value={formValues.email}
           onChange={handleChange}
         />
+        
         <br />
-        <label htmlFor="">Password</label> <br />
-        <input
+        <label >Password</label> <br />
+        <input style={{background:"#36455a"}}
           type="password"
           name="password"
           value={formValues.password}
@@ -86,10 +92,11 @@ export default function Login() {
         />
         <br />
         <br />
-        <button>Send</button>
+        <button  className="button-send ">Iniciar Sesión</button>
       </form>
       <br />
       {loginError && <p style={{ color: "red" }}>{loginError}</p>}
+      </div>
     </div>
   );
 }

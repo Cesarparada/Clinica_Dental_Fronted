@@ -8,5 +8,6 @@ import UserProfile from "./user-profile";
 import PageNotFound from "./page-not-found";
 import RegistroOdontologo from "./registro-odontologo";
 import Citas from "./citas/Citas";
+import Footer from "./footer/Footer";
 
-export { About, Admin, Home, Login, Register, UserProfile, PageNotFound, Contact, RegistroOdontologo, Citas};
+export { About, Admin, Home, Login, Register, UserProfile, PageNotFound, Contact, RegistroOdontologo, Citas, Footer};
