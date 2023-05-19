@@ -1,11 +1,11 @@
 import React from "react";
 import { TablePagination } from "../../components";
-import { dateFormat } from "../../_utils/date";
+import "./Data-list-table.scss"
 
 export default function DataListTable({
    data,
-   title = "Data",
-   count,
+   // title = "Data",
+   // count,
    headers,
    attributes,
    onChange,
@@ -13,15 +13,15 @@ export default function DataListTable({
    pagination = null,
 }) {
    return (
-      <div className={className}>
+      <div className="tabla-users">
          <table>
             <thead>
                <tr colSpan={headers.length}>
-                  <th>
+                  {/* <th>
                      <div className="tableTitle">
                         {title} ({count})
                      </div>
-                  </th>
+                  </th> */}
                </tr>
                <tr>
                   {headers.map((th, index) => (<th key={index}>{th}</th>))}
