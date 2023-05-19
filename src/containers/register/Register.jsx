@@ -65,7 +65,7 @@ export default function Register() {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
-              placeholder="correo@mail.com"
+              placeholder="correo@email.com"
               name="email"
               value={formValues.email}
               onChange={handleChange}
