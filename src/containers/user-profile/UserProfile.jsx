@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 import userService from "../../_services/userService";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 export default function UserProfile() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [modifyProfile, setModifyProfile] = useState(false);
   const [formValues, setFormValues] = useState({});
@@ -32,11 +34,17 @@ export default function UserProfile() {
     setModifyProfile(true);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     updateProfile(authState.userToken, formValues);
   };
+
   const updateProfile = async (token, body) => {
-    const response = await userService.updateProfile(token, body);
+    try {
+      const response = await userService.updateProfile(token, body);
+      setModifyProfile(false);
+      getProfile(authState.userToken);
+    } catch (error) {}
   };
 
   const getProfile = async (token) => {
@@ -53,8 +61,8 @@ export default function UserProfile() {
     <>
       <div>
         {!modifyProfile && (
-          <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+          <Card style={{ width: "15rem" }}>
+            <Card.Img variant="top" src="/_imagenes/usuario.png" />
 
             <Card.Body>
               <Card.Title>Perfil del Usuario</Card.Title>
