@@ -65,6 +65,7 @@ export default function Login() {
   // RETURN
   return (
     <div className="contenedor-form">
+      <div className="alto">
       <div className="login-form form">
         <img
           src="/_imagenes/diente_login.png"
@@ -97,6 +98,7 @@ export default function Login() {
         </form>
         <br />
         {loginError && <p style={{ color: "red" }}>{loginError}</p>}
+      </div>
       </div>
     </div>
   );

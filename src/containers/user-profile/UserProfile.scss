@@ -1,11 +1,9 @@
 .contenedor-card {
-  height:100%;
+  height:600px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 50px;
-
   .card{
     background: #809bc1;
     text-align: center;
@@ -17,7 +15,6 @@
   .items{
     background: #54bbbe;
   }
-
   .card-img {
     margin-top: 10px;
     width: 100px;
@@ -25,10 +22,13 @@
   }
   .btn-modificar{
     position: relative;
-    top: 20px;
+    margin-top: 20px;
   }
   .modify-form{
+    height: 550px;
     width: 300px;
     padding: 10px;
   }
+
+ 
 }

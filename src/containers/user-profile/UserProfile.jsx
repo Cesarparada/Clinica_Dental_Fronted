@@ -35,13 +35,12 @@ export default function UserProfile() {
     setModifyProfile(true);
   };
 
-  
   const updateProfile = async (token, body) => {
     const response = await userService.updateProfile(token, body);
     setModifyProfile(false);
     getProfile(authState.userToken);
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     updateProfile(authState.userToken, formValues);
@@ -60,94 +59,109 @@ export default function UserProfile() {
   return (
     <>
       <div className="contenedor-card">
-        <div className="card" >
+        <div className="card">
+          {!modifyProfile && (
+            <Card style={{ width: "15rem" }}>
+              <div>
+                <Card.Img className="card-img" src="/_imagenes/usuario.png" />
+              </div>
+              <Card.Body>
+                <Card.Title>Perfil del Usuario</Card.Title>
+              </Card.Body>
+              <ListGroup>
+                <ListGroup.Item className="items">
+                  Nombre: {user.nombre}
+                </ListGroup.Item>
+                <ListGroup.Item className="items">
+                  Apellidos: {user.apellidos}
+                </ListGroup.Item>
+                <ListGroup.Item className="items">
+                  Fecha de Nacimiento: <br /> {user.fecha_de_nacimiento}
+                </ListGroup.Item>
+                <ListGroup.Item className="items">
+                  Teléfono: <br /> {user.telefono}
+                </ListGroup.Item>
+                <ListGroup.Item className="items">
+                  Email: <br /> {user.email}
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          )}
+        </div>
+
         {!modifyProfile && (
-          <Card style={{ width: "15rem" }}>
-            <div>
-              <Card.Img className="card-img" src="/_imagenes/usuario.png" />
-            </div>
-            <Card.Body >
-              <Card.Title>Perfil del Usuario</Card.Title>
-            </Card.Body>
-            <ListGroup>
-              <ListGroup.Item  className="items">Nombre: {user.nombre}</ListGroup.Item>
-              <ListGroup.Item  className="items">Apellidos: {user.apellidos}</ListGroup.Item>
-              <ListGroup.Item  className="items">
-                Fecha de Nacimiento: <br /> {user.fecha_de_nacimiento}
-              </ListGroup.Item>
-              <ListGroup.Item  className="items">
-                Teléfono: <br /> {user.telefono}
-              </ListGroup.Item>
-              <ListGroup.Item  className="items">
-                Email: <br /> {user.email}
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
+          <div>
+            <Button
+              variant="primary"
+              className="btn-modificar"
+              onClick={handleChangeProfile}
+            >
+              Modificar Perfil
+            </Button>
+          </div>
+        )}
+
+        {modifyProfile && (
+          <div className="form modify-form">
+            <Form onSubmit={handleSubmit} className="padreBtn">
+              <Form.Group className="mb-3">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  className="input"
+                  type="text"
+                  placeholder="Nombre"
+                  name="nombre"
+                  value={formValues.nombre}
+                  onChange={handleChange}
+                />
+                <br />
+                <Form.Label>Apellidos</Form.Label>
+                <Form.Control
+                  className="input"
+                  type="text"
+                  placeholder="Apellidos"
+                  name="apellidos"
+                  value={formValues.apellidos}
+                  onChange={handleChange}
+                />
+                <br />
+                <Form.Label>Fecha de Nacimiento</Form.Label>
+                <Form.Control
+                  className="input"
+                  type="date"
+                  name="fecha_de_nacimiento"
+                  value={formValues.fecha_de_nacimiento}
+                  onChange={handleChange}
+                />
+                <br />
+                <Form.Label>Número de Teléfono</Form.Label>
+                <Form.Control
+                  className="input"
+                  type="text"
+                  placeholder="00-000000000"
+                  name="telefono"
+                  value={formValues.telefono}
+                  onChange={handleChange}
+                />
+                <br />
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  className="input"
+                  type="password"
+                  placeholder="***********"
+                  name="password"
+                  value={formValues.password}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <br />
+              <Button variant="primary"  type="submit">
+                Subir Cambios
+              </Button>
+            </Form>
+          </div>
         )}
       </div>
-      
-      {!modifyProfile && (
-        <div>
-          <Button variant="primary"  className="btn-modificar" onClick={handleChangeProfile}>
-            Modificar Perfil
-          </Button>
-        </div>
-      )}
-
-      {modifyProfile && (
-        <div className="form modify-form">
-        <Form onSubmit={handleSubmit} className="padreBtn">
-          <Form.Group className="mb-3">
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Nombre"
-              name="nombre"
-              value={formValues.nombre}
-              onChange={handleChange}
-            />
-            <br />
-            <Form.Label>Apellidos</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Apellidos"
-              name="apellidos"
-              value={formValues.apellidos}
-              onChange={handleChange}
-            />
-            <br />
-            <Form.Label>Fecha de Nacimiento</Form.Label>
-            <Form.Control
-              type="date"
-              name="fecha_de_nacimiento"
-              value={formValues.fecha_de_nacimiento}
-              onChange={handleChange}
-            />
-            <br />
-            <Form.Label>Número de Teléfono</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="00-000000000"
-              name="telefono"
-              value={formValues.telefono}
-              onChange={handleChange}
-            />
-            <br />
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="***********"
-              name="password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <br />
-          <Button variant="primary" type="submit">
-            Subir Cambios
-          </Button>
-        </Form></div>
-      )}</div>
     </>
   );
 }

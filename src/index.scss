@@ -1,9 +1,10 @@
-body {
+body { 
   background-image: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0)),
     url(/_imagenes/background.jpg);
   background-repeat: no-repeat;
 }
 :root {
+ 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -33,14 +34,15 @@ h1 {
   line-height: 1.1;
 }
 .contenedor-form {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 .form{
-  text-align: center;
+    text-align: center;
     border-radius: 10px;
     background: rgb(255, 255, 255);
     background: linear-gradient(
@@ -71,7 +73,11 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+ .input{
+    background: #243246;
+    color: white;
 
+  }
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import authService from "../../_services/authService";
 import { useState } from "react";
-import "./Register.scss"
+import "./Register.scss";
 
 export default function Register() {
   const [formValues, setFormValues] = useState({});
@@ -28,18 +28,21 @@ export default function Register() {
 
   return (
     <div className="contenedor-form">
+      <div className="alto-register">
       <div className="register-form form">
-      <br />
-      <h1>Registrarse</h1>
-      <br />
+        <img
+          src="/_imagenes/register.png"
+          className="logo-register"
+          alt="logo-register"
+        />
 
-      <Form onSubmit={handleSubmit} >
-        {/* <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>
-          {JSON.stringify(formValues, null, 2)}
-        </pre> */}
-              <Form.Group className="mb-3  rounded p-4 inputForm">
+        <h1>Registrarse</h1>
+
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3  rounded p-4 inputForm">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
+              className="input"
               type="text"
               placeholder="Nombre "
               name="nombre"
@@ -48,6 +51,7 @@ export default function Register() {
             />
             <Form.Label>Apellidos</Form.Label>
             <Form.Control
+              className="input"
               type="text"
               placeholder="Apellidos "
               name="apellidos"
@@ -56,6 +60,7 @@ export default function Register() {
             />
             <Form.Label>Fecha de nacimiento</Form.Label>
             <Form.Control
+              className="input"
               type="date"
               placeholder="fecha de nacimiento "
               name="fecha_de_nacimiento"
@@ -64,6 +69,7 @@ export default function Register() {
             />
             <Form.Label>Email</Form.Label>
             <Form.Control
+              className="input"
               type="email"
               placeholder="correo@email.com"
               name="email"
@@ -72,6 +78,7 @@ export default function Register() {
             />
             <Form.Label>Teléfono</Form.Label>
             <Form.Control
+              className="input"
               type="text"
               placeholder="Teléfono "
               name="telefono"
@@ -80,23 +87,26 @@ export default function Register() {
             />
             <Form.Label>Password</Form.Label>
             <Form.Control
+              className="input"
               type="password"
-            placeholder="***********"
+              placeholder="***********"
               name="password"
               value={formValues.password}
               onChange={handleChange}
             />
-          <br />
-          <Form.Check
-            type="checkbox"
-            label="* He leído y acepto la política de privacidad"
-          />
-        </Form.Group>
-        <br />
-        <Button variant="primary" className="btn-register" type="submit">
-          Registrar
-        </Button>
-      </Form>
+
+            <Form.Check
+              type="checkbox"
+              label="* He leído y acepto la política de privacidad"
+            />
+          </Form.Group>
+        </Form>
+      </div>
+      <div className="btn-register">
+      <Button variant="primary"  type="submit">
+        Registrar
+      </Button>
+      </div>
       </div>
     </div>
   );
