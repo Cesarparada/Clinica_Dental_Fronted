@@ -7,6 +7,7 @@ import userService from "../../_services/userService";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
+import "./UserProfile.scss";
 
 export default function UserProfile() {
   const navigate = useNavigate();
@@ -34,24 +35,23 @@ export default function UserProfile() {
     setModifyProfile(true);
   };
 
+  
+  const updateProfile = async (token, body) => {
+    const response = await userService.updateProfile(token, body);
+    setModifyProfile(false);
+    getProfile(authState.userToken);
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     updateProfile(authState.userToken, formValues);
-  };
-
-  const updateProfile = async (token, body) => {
-    try {
-      const response = await userService.updateProfile(token, body);
-      setModifyProfile(false);
-      getProfile(authState.userToken);
-    } catch (error) {}
   };
 
   const getProfile = async (token) => {
     try {
       const response = await userService.getProfile(token);
       setUser(response);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -59,42 +59,44 @@ export default function UserProfile() {
 
   return (
     <>
-      <div>
+      <div className="contenedor-card">
+        <div className="card" >
         {!modifyProfile && (
           <Card style={{ width: "15rem" }}>
-            <Card.Img variant="top" src="/_imagenes/usuario.png" />
-
-            <Card.Body>
+            <div>
+              <Card.Img className="card-img" src="/_imagenes/usuario.png" />
+            </div>
+            <Card.Body >
               <Card.Title>Perfil del Usuario</Card.Title>
             </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroup.Item>Nombre: {user.nombre}</ListGroup.Item>
-              <ListGroup.Item>Apellidos: {user.apellidos}</ListGroup.Item>
-              <ListGroup.Item>
+            <ListGroup>
+              <ListGroup.Item  className="items">Nombre: {user.nombre}</ListGroup.Item>
+              <ListGroup.Item  className="items">Apellidos: {user.apellidos}</ListGroup.Item>
+              <ListGroup.Item  className="items">
                 Fecha de Nacimiento: <br /> {user.fecha_de_nacimiento}
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item  className="items">
                 Teléfono: <br /> {user.telefono}
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item  className="items">
                 Email: <br /> {user.email}
               </ListGroup.Item>
             </ListGroup>
           </Card>
         )}
       </div>
+      
       {!modifyProfile && (
         <div>
-          <Button variant="primary" onClick={handleChangeProfile}>
+          <Button variant="primary"  className="btn-modificar" onClick={handleChangeProfile}>
             Modificar Perfil
           </Button>
         </div>
       )}
+
       {modifyProfile && (
+        <div className="form modify-form">
         <Form onSubmit={handleSubmit} className="padreBtn">
-          <pre style={{ textAlign: "left", width: "250px", margin: "auto" }}>
-            {JSON.stringify(formValues, null, 2)}
-          </pre>
           <Form.Group className="mb-3">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
@@ -144,8 +146,8 @@ export default function UserProfile() {
           <Button variant="primary" type="submit">
             Subir Cambios
           </Button>
-        </Form>
-      )}
+        </Form></div>
+      )}</div>
     </>
   );
 }
