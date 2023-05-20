@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import userService from "../../_services/userService";
-import { DataListTable} from "../../components";
+import { DataListTable } from "../../components";
+import "./Admin.scss";
 
 export default function Admin() {
   //hooks
@@ -58,25 +59,26 @@ export default function Admin() {
     }
   };
 
-  // const newUsers = (users) =>
-  //   users.map((user) => {
-  //     user.alumno = user?.alumno ? "YES" : "NO";
-  //     user.role = user?.role ? user.role.role : "undefined";
-  //     user.fecha_nacimiento = dateFormat(user.fecha_nacimiento);
-  //     return user;
-  //   });
-
   return (
     <>
       {isAdmin && (
         <>
-          <h1>Usuarios Registrados</h1>
-        <br />
+          <div className="panel-admin">
+            <h1>Usuarios Registrados</h1>
+         
+          <br />
+
           <DataListTable
-            data={(users)}
+            data={users}
             title="Users"
             count={usersCount}
-            headers={["ID", "Nombre", "Apellidos", "Email", "Fecha de Nacimiento"]}
+            headers={[
+              "ID",
+              "Nombre",
+              "Apellidos",
+              "Email",
+              "Fecha de Nacimiento",
+            ]}
             attributes={[
               "id",
               "nombre",
@@ -89,10 +91,9 @@ export default function Admin() {
               totalPages: usersPages,
               count: usersCount,
             }}
-            onChange={handleUsersList} 
-          /> 
-          
-        </>
+            onChange={handleUsersList}
+          />
+      </div>   </>
       )}
     </>
   );
