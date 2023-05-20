@@ -1,4 +1,36 @@
-.homediv{
-    width: 100%;
-    height: 900px;
+.homediv {
+  width: 100%;
+  .info-home {
+    height: 600px;
+    gap: 2em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cards-items {
+    background: #cceded;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cards-items:hover {
+    border-color: #a17600;
+    box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.733),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .img-card-home {
+    margin-top: 5px;
+    height: 150px;
+    width: 150px;
+  }
+  h2,
+  p {
+    color: black;
+  }
+  p {
+    font-size: 25px;
+  }
 }
