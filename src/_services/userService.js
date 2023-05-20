@@ -41,9 +41,7 @@ userService.updateProfile = async (token, data) => {
     password: data.password,
   };
 
-  return (
-    await axios.put(global.BASE_URL + `/usuarios/updateprofile`, body, config)
-  ).data;
+  return (await axios.put(global.BASE_URL + `/usuarios/updateprofile`, body, config)).data;
 };
 
 export default userService;

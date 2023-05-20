@@ -1,13 +1,13 @@
 .tabla-users{
     height: 500px;
-   
     display: flex;
     justify-content: center;
     align-items: center;
 table{
-    height: 200px;
+
+    height: 300px;
     width: 600px;
-    border: solid 0.5px;
+   
     text-align: center;
     border-radius: 10px;
     background: rgb(255, 255, 255);
@@ -19,7 +19,9 @@ table{
     -webkit-box-shadow: 35px 43px 20px -5px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 35px 43px 20px -5px rgba(0, 0, 0, 0.5);
     box-shadow: 35px 43px 20px -5px rgba(0, 0, 0, 0.5);
-
+thead{
+  font-size: 20px;
+}
     
 }
 

@@ -4,12 +4,9 @@ import "./Data-list-table.scss"
 
 export default function DataListTable({
    data,
-   // title = "Data",
-   // count,
    headers,
    attributes,
    onChange,
-   className,
    pagination = null,
 }) {
    return (
@@ -17,11 +14,7 @@ export default function DataListTable({
          <table>
             <thead>
                <tr colSpan={headers.length}>
-                  {/* <th>
-                     <div className="tableTitle">
-                        {title} ({count})
-                     </div>
-                  </th> */}
+               
                </tr>
                <tr>
                   {headers.map((th, index) => (<th key={index}>{th}</th>))}

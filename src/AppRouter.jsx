@@ -17,7 +17,6 @@ export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      
       <Route path="/about" element={<About />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/registroOdontologo" element={<RegistroOdontologo />} />

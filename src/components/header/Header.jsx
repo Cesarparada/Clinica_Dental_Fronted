@@ -10,7 +10,6 @@ import { updateAuthStoreStateLogOut } from "../../features/authentication/update
 import {
   MdPersonOutline,
   MdOutlineLogout,
-  MdKeyboardArrowDown,
   MdOutlineLogin,
 } from "react-icons/md";
 
@@ -21,6 +20,7 @@ export default function Header() {
   const isLoggedIn = authState.isLoggedIn;
   const { name, role } = authState.userInfo;
   const isAdmin = role == "admin";
+
 
   // HANDLERS
   const handleLogout = () => {
