@@ -7,8 +7,9 @@ import Card from 'react-bootstrap/Card';
 export default function Home() {
   return (
     <div className='homediv'> 
-    <h1>Sonrie</h1>
-    
+    <div className='titulo-home' >
+    <h1> <span>Sonríe con los mejores</span> </h1>
+   </div>
     
     <div className='info-home'>
  
@@ -17,7 +18,7 @@ export default function Home() {
       <Card.Body>
         <Card.Title>Los Mejores Profesionales</Card.Title>
         <Card.Text>
-        Contamos con profesionales especialistas para cada tratamiento..
+        Contamos con profesionales especialistas para cada tratamiento.
         </Card.Text>
       </Card.Body>
     </Card>

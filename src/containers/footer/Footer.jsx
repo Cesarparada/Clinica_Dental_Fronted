@@ -1,84 +1,46 @@
-import React from 'react';
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+import React from "react";
+import { MDBFooter, MDBContainer, MDBBtn } from "mdb-react-ui-kit";
+import "./Footer.scss";
 
 export default function Footer() {
   return (
-    <MDBFooter className='bg-light text-center text-white'>
-      <MDBContainer className='p-4 pb-0'>
-        <section className='mb-4'>
+    <MDBFooter className="bg-primary text-center text-white">
+      <MDBContainer className="p-4 pb-0">
+        <section className="mb-4">
           <MDBBtn
             floating
-            className='m-1'
-            style={{ backgroundColor: '#3b5998' }}
-            href='#!'
-            role='button'
+            className="m-1"
+            style={{ backgroundColor: "#3b5998" }}
+            href="mailto:cesard.0925@gmail.com"
+            role="button"
           >
-            <MDBIcon fab icon='facebook-f' />
+            <img className="icon" src="/_imagenes/gmail.png" alt="" />
           </MDBBtn>
 
           <MDBBtn
             floating
-            className='m-1'
-            style={{ backgroundColor: '#55acee' }}
-            href='#!'
-            role='button'
+            className="m-1"
+            style={{ backgroundColor: "#3b5998" }}
+            href="https://www.linkedin.com/in/c%C3%A9sar-parada-castillo/"
+            role="button"
           >
-            <MDBIcon fab icon='twitter' />
+            <img className="icon" src="/_imagenes/linkedin.png" alt="" />
           </MDBBtn>
 
           <MDBBtn
             floating
-            className='m-1'
-            style={{ backgroundColor: '#dd4b39' }}
-            href='#!'
-            role='button'
+            className="m-1"
+            style={{ backgroundColor: "#3b5998" }}
+            href="https://github.com/Cesarparada"
+            role="button"
           >
-            <MDBIcon fab icon='google' />
-          </MDBBtn>
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#ac2bac' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='instagram' />
-          </MDBBtn>
-
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#0082ca' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='linkedin-in' />
-          </MDBBtn>
-
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#333333' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='github' />
+            <img className="icon" src="/_imagenes/github.png" alt="" />
           </MDBBtn>
         </section>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        © 2023
-        <a className='text-white' href=''>
-         Cesar Footer
-        </a>
+      <div className="text-center  p-3" style={{ backgroundColor: " #070a0c" }}>
+        © 2023 Cesar Parada
       </div>
     </MDBFooter>
   );

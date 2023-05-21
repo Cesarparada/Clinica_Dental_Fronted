@@ -1,6 +1,4 @@
-import About from "./about";
 import Admin from "./admin";
-import Contact from "./contact";
 import Home from "./home";
 import Login from "./login";
 import Register from "./register";
@@ -10,4 +8,14 @@ import RegistroOdontologo from "./registro-odontologo";
 import Citas from "./citas/Citas";
 import Footer from "./footer/Footer";
 
-export { About, Admin, Home, Login, Register, UserProfile, PageNotFound, Contact, RegistroOdontologo, Citas, Footer};
+export {
+  Admin,
+  Home,
+  Login,
+  Register,
+  UserProfile,
+  PageNotFound,
+  RegistroOdontologo,
+  Citas,
+  Footer,
+};

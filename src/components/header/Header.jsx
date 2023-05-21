@@ -30,12 +30,11 @@ export default function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
+        <Navbar.Brand href="/"><img src="/_imagenes/herramientas-de-dentista.png" alt="" style={{width:"50px"}}/></Navbar.Brand>
         <Navbar.Brand href="/">Clínica Dental</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/contact">Contact</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
             {isLoggedIn && !isAdmin && (
                 <Nav.Link href="/citas">Citas</Nav.Link>
             )}
