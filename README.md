@@ -7,108 +7,67 @@
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center">
     <br> 
 </p>
 
-## 📝 Table of Contents
-
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
-
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Es el diseño funcional Frontend de una cliníca dental, con vistas de login, registro, citas y modificaciondes.
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+Permite la navegacion de distintas areas segun tu rol Usuario, Admin y Odontologo.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Backend: (https://cesarparada.github.io/Proyecto_Clinica_Dental_Backend/)
 
-### Prerequisites
+### PrevieW
 
-What things you need to install the software and how to install them.
+Vista de la navegación de la pagina.
+<img src="_imagenes/mobile_1.gif" alt="video-demo">
+<img src="_imagenes/mobile.gif" alt="video-demo">
+<img src="_imagenes/mobile.png" alt="img-demo">
 
-```
-Give examples
-```
+### Instalación
 
-### Installing
+- Clonamos este repositorio.
+- Instalamos las dependencias: npm install
+- Iniciamos el servidor: npm run dev
 
-A step by step series of examples that tell you how to get a development env running.
+## 🎈 Como utilizarlo <a name="usage"></a>
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
+- Nos registramos como usuarios.
+- Nos logeamos como usuarios.
+- Creamos una cita com usuarios y se nos permite, modificar y eliminar.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- React.
+- Bootstrap.
+- HTML.
+- CSS - sass.
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@Cesarparada](https://github.com/Cesarparada) - Idea & Initial work
 
 See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+## Agradecimientos:
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+Agradezco al profesor:
+
+- **_Prof. Fidel Guilart_**
+
+## Contacto
+
+**_César Parada_**  
+<a href="https://github.com/Cesarparada" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=orange" target="_blank"></a>
+
+<a href="mailto:cesard.0925@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
+
+<a href="https://www.linkedin.com/in/linkedinUser/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+
+</p>

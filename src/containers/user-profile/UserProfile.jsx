@@ -17,6 +17,7 @@ export default function UserProfile() {
   const authState = useSelector((state) => state.auth);
   const isLoggedIn = authState.isLoggedIn;
 
+  
   useEffect(() => {
     if (authState.userToken) {
       getProfile(authState.userToken);

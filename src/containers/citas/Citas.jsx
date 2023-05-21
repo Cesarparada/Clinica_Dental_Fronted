@@ -328,7 +328,6 @@ export default function Citas() {
                             <Form.Label>Identificador de cita</Form.Label>
                             <Form.Control
                               type="number"
-                              placeholder="5"
                               name="idCita"
                               onChange={handleDeleteCita}
                             />
