@@ -21,7 +21,7 @@ Es el diseño funcional Frontend de una cliníca dental, con vistas de login, re
 
 Permite la navegacion de distintas areas segun tu rol Usuario, Admin y Odontologo.
 
-Backend: (https://cesarparada.github.io/Proyecto_Clinica_Dental_Backend/)
+Backend: (https://github.com/Cesarparada/Proyecto_Clinica_Dental_Backend.git)
 
 ### PrevieW
 
