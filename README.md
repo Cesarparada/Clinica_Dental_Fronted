@@ -26,9 +26,12 @@ Backend: (https://cesarparada.github.io/Proyecto_Clinica_Dental_Backend/)
 ### PrevieW
 
 Vista de la navegación de la pagina.
-<img src="_imagenes/mobile_1.gif" alt="video-demo">
-<img src="_imagenes/mobile.gif" alt="video-demo">
-<img src="_imagenes/mobile.png" alt="img-demo">
+
+- <img src="_imagenes/mobile_1.gif" alt="video-demo">
+---
+- <img src="_imagenes/mobile.gif" alt="video-demo">
+---
+- <img src="_imagenes/mobile.png" alt="img-demo">
 
 ### Instalación
 
@@ -51,7 +54,7 @@ Vista de la navegación de la pagina.
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@Cesarparada](https://github.com/Cesarparada) - Idea & Initial work
+- [@Cesarparada](https://github.com/Cesarparada) 
 
 See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
 
