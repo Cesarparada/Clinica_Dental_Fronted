@@ -1,13 +1,16 @@
 .item-citas {
-height: 100%;
+height:100%;
 display: flex;
 align-items: center;
 flex-direction: column;
 justify-content: center;
+// position: relative;
 .acordion{
+    margin-top: 25px;
     width:55vmax;
-    height: 230px;    
+    height: 100%;    
 }
+
 }
 .tabla-citas{
     height: 75vh;

@@ -151,146 +151,201 @@ export default function Citas() {
               headers={["ID cita", "ID paciente", "Fecha", "Hora"]}
               attributes={["id", "id_paciente", "fecha", "horario"]}
               onChange={handleCitas}
-              
-            /> <div className="item-odontologo">
-              <img className="img-odontologo" src="/_imagenes/dental.png" alt="odontologo" />
+            />{" "}
+            <div className="item-odontologo">
+              <img
+                className="img-odontologo"
+                src="/_imagenes/dental.png"
+                alt="odontologo"
+              />
             </div>
           </div>
         )}
 
         {isPatient && (
           <>
+            {" "}
             <div>
-              <DataListTable
-                data={cita}
-                title="Tus citas"
-                headers={["ID cita", "ID odontologo", "Fecha", "Hora"]}
-                attributes={["id", "id_odontologo", "fecha", "horario"]}
-                onChange={handleCitas}
-              />
-            </div>
-            <div className="acordion">
-            <div >
-              <Accordion defaultActiveKey="0">
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header onClick={handleFormCreateCita}>
-                    Crear cita
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    {formCreateCita && (
-                      <Form onSubmit={handleSubmitCreate}>
-                        <Form.Group>
-                          <Form.Label>id_odontologo</Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="id_odontologo "
-                            name="id_odontologo"
-                            value={formValues.id_odontologo}
-                            onChange={handleChange}
-                          />
-                          <Form.Label>Día de la cita</Form.Label>
-                          <Form.Control
-                            type="date"
-                            placeholder="fecha"
-                            name="fecha"
-                            value={formValues.fecha}
-                            onChange={handleChange}
-                          />
-                          <Form.Label>Horario </Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="10:00:00 "
-                            name="horario"
-                            value={formValues.horario}
-                            onChange={handleChange}
-                          />
-                        </Form.Group>
+              <div>
+                <DataListTable
+                  data={cita}
+                  title="Tus citas"
+                  headers={["ID cita", "ID odontologo", "Fecha", "Hora"]}
+                  attributes={["id", "id_odontologo", "fecha", "horario"]}
+                  onChange={handleCitas}
+                />
+              </div>
+              <div className="acordion">
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header onClick={handleFormCreateCita}>
+                      Crear cita
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      {formCreateCita && (
+                        <Form onSubmit={handleSubmitCreate}>
+                          <Form.Group>
+                            <Form.Label>Odontologo</Form.Label>
+                            <Form.Check
+                              type={"radio"}
+                              name="id_odontologo"
+                              value="1"
+                              onChange={handleChange}
+                              label={"Odontologo Miguel"}
+                            />
+                            <Form.Check
+                              type={"radio"}
+                              name="id_odontologo"
+                              value="2"
+                              onChange={handleChange}
+                              label={"Odontologo Ernesto"}
+                            />
+                            <Form.Check
+                              type={"radio"}
+                              name="id_odontologo"
+                              value="3"
+                              onChange={handleChange}
+                              label={"Odontologo Juan"}
+                            />
+                            <Form.Label>Día de la cita</Form.Label>
+                            <Form.Control
+                              type="date"
+                              placeholder="fecha"
+                              name="fecha"
+                              value={formValues.fecha}
+                              onChange={handleChange}
+                            />
+                            <Form.Label>Horario de la cita</Form.Label>
+                            <br />
+                            <Form.Check
+                              inline
+                              type={"radio"}
+                              name="horario"
+                              value="10:00:00"
+                              onChange={handleChange}
+                              label={`10:00`}
+                            />
+                            <Form.Check
+                              inline
+                              type={"radio"}
+                              name="horario"
+                              value="11:00:00"
+                              onChange={handleChange}
+                              label={`11:00`}
+                            />
+                            <Form.Check
+                              inline
+                              type={"radio"}
+                              name="horario"
+                              value="12:00:00"
+                              onChange={handleChange}
+                              label={`12:00`}
+                            />
+                          </Form.Group>
 
-                        <Button
-                          variant="primary"
-                          type="submit"
-                          className="buttonUpdate"
-                        >
-                          Crear cita
-                        </Button>
-                      </Form>
-                    )}
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header onClick={handleFormUpdateCita}>
-                    Modificar cita
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    {formUpdateCita && (
-                      <Form onSubmit={handleSubmitUpdate}>
-                        <Form.Group>
-                          <Form.Label></Form.Label>
-                          <Form.Label>Identificador de cita</Form.Label>
-                          <Form.Control
-                            type="number"
-                            placeholder="5"
-                            name="idCita"
-                            onChange={handleChangeIdCita}
-                          />
-                          <Form.Label>Día de la cita</Form.Label>
-                          <Form.Control
-                            type="date"
-                            placeholder="fecha"
-                            name="fecha"
-                            value={formValues.fecha}
-                            onChange={handleChange}
-                          />
-                          <Form.Label>Horario </Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="10:00:00 "
-                            name="horario"
-                            value={formValues.horario}
-                            onChange={handleChange}
-                          />
-                        </Form.Group>
-                        <Button
-                          variant="primary"
-                          type="submit"
-                          className="buttonUpdate"
-                        >
-                          Modificar
-                        </Button>
-                      </Form>
-                    )}
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="2">
-                  <Accordion.Header onClick={handleFormDeleteCita}>
-                    Eliminar Cita
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    {formDeleteCita && (
-                      <Form onSubmit={handleSubmitDelete}>
-                        <Form.Group>
-                          <Form.Label></Form.Label>
-                          <Form.Label>Identificador de cita</Form.Label>
-                          <Form.Control
-                            type="number"
-                            placeholder="5"
-                            name="idCita"
-                            onChange={handleDeleteCita}
-                          />
-                        </Form.Group>
-                        <Button
-                          variant="primary"
-                          type="submit"
-                          className="buttonUpdate"
-                        >
-                          Eliminar
-                        </Button>
-                      </Form>
-                    )}
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
-            </div>
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            className="buttonUpdate"
+                          >
+                            Crear cita
+                          </Button>
+                        </Form>
+                      )}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header onClick={handleFormUpdateCita}>
+                      Modificar cita
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      {formUpdateCita && (
+                        <Form onSubmit={handleSubmitUpdate}>
+                          <Form.Group>
+                            <Form.Label></Form.Label>
+                            <Form.Label>Identificador de cita</Form.Label>
+                            <Form.Control
+                              type="text"
+                              placeholder="Coloque identificador de cita"
+                              name="idCita"
+                              onChange={handleChangeIdCita}
+                            />
+                            <Form.Label>Día de la cita</Form.Label>
+                            <Form.Control
+                              type="date"
+                              placeholder="fecha"
+                              name="fecha"
+                              value={formValues.fecha}
+                              onChange={handleChange}
+                            />
+                            <Form.Label>Horario de la cita</Form.Label>
+                            <br />
+                            <Form.Check
+                              inline
+                              type={"radio"}
+                              name="horario"
+                              value="10:00:00"
+                              onChange={handleChange}
+                              label={`10:00`}
+                            />
+                            <Form.Check
+                              inline
+                              type={"radio"}
+                              name="horario"
+                              value="11:00:00"
+                              onChange={handleChange}
+                              label={`11:00`}
+                            />
+                            <Form.Check
+                              inline
+                              type={"radio"}
+                              name="horario"
+                              value="12:00:00"
+                              onChange={handleChange}
+                              label={`12:00`}
+                            />
+                          </Form.Group>
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            className="buttonUpdate"
+                          >
+                            Modificar
+                          </Button>
+                        </Form>
+                      )}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="2">
+                    <Accordion.Header onClick={handleFormDeleteCita}>
+                      Eliminar Cita
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      {formDeleteCita && (
+                        <Form onSubmit={handleSubmitDelete}>
+                          <Form.Group>
+                            <Form.Label></Form.Label>
+                            <Form.Label>Identificador de cita</Form.Label>
+                            <Form.Control
+                              type="number"
+                              placeholder="5"
+                              name="idCita"
+                              onChange={handleDeleteCita}
+                            />
+                          </Form.Group>
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            className="buttonUpdate"
+                          >
+                            Eliminar
+                          </Button>
+                        </Form>
+                      )}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </div>
             </div>
           </>
         )}
