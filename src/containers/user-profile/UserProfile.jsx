@@ -1,62 +1,118 @@
-import React, { useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     updateProfile(authState.userToken, formValues);
+//     const credentials = {
+//       password: formValues.password,
+//     };
+//     const form = e.currentTarget;
+//     if(form.checkValidity() === false){
+
+//     }if (
+//     validator.isByteLength(credentials.password, { min: 8, max: undefined })
+//   ) {
+//     updateProfile(authState.userToken, formValues);
+
+//   } else if (
+//     !validator.isByteLength(credentials.password, { min: 8, max: undefined })
+//   ) {
+//     setUpdateError("La contraseña debe contener mínimo 8 caracteres");
+//   }
+// };
+import React, { useEffect, useState } from "react";
+import "./UserProfile.scss";
 import userService from "../../_services/userService";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
-import "./UserProfile.scss";
-
+import { useSelector } from "react-redux";
+import { store } from "../../app/store";
+import validator from "validator";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 export default function UserProfile() {
-  const navigate = useNavigate();
+  // HOOKS
   const [user, setUser] = useState({});
-  const [modifyProfile, setModifyProfile] = useState(false);
   const [formValues, setFormValues] = useState({});
-  const authState = useSelector((state) => state.auth);
-  const isLoggedIn = authState.isLoggedIn;
+  const [modifyProfile, setModifyProfile] = useState(false);
+  const [updateError, setUpdateError] = useState(null);
 
-  
+  const [validated, setValidated] = useState(false);
+
+  const authState = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (authState.userToken) {
       getProfile(authState.userToken);
+    } else {
+      navigate("/");
     }
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value, // key: value
-    });
-  };
-
-  const handleChangeProfile = () => {
-    setModifyProfile(true);
-  };
-
-  const updateProfile = async (token, body) => {
-    const response = await userService.updateProfile(token, body);
-    setModifyProfile(false);
-    getProfile(authState.userToken);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    updateProfile(authState.userToken, formValues);
-  };
-
+  // FUNCTIONS
   const getProfile = async (token) => {
     try {
       const response = await userService.getProfile(token);
+
       setUser(response);
-      // console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const updateProfile = async (token, body) => {
+    await userService.updateProfile(token, body);
+    setModifyProfile(false);
+    getProfile(authState.userToken);
+  };
+
+  // HANDLERS
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      if (formValues.password) {
+        if (
+          !validator.isByteLength(formValues.password, {
+            min: 8,
+            max: undefined,
+          })
+        ) {
+          event.preventDefault();
+          return setUpdateError(
+            "La contraseña debe contener mínimo 8 caracteres"
+          );
+        } else if (
+          validator.isByteLength(formValues.password, {
+            min: 8,
+            max: undefined,
+          })
+        ) {
+          setUpdateError(null);
+        }
+      }
+      updateProfile(authState.userToken, formValues);
+      if (formValues.nombre) {
+        store.dispatch(setUser({ name: formValues.nombre }));
+      }
+    }
+    setValidated(true);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value, //key: value
+    });
+  };
+  const handleChangeProfile = () => {
+    setModifyProfile(true);
+  };
+  
   return (
     <>
       <div className="contenedor-card">
@@ -104,7 +160,11 @@ export default function UserProfile() {
 
         {modifyProfile && (
           <div className="form modify-form">
-            <Form onSubmit={handleSubmit} className="padreBtn">
+            <Form
+              onSubmit={handleSubmit}
+              validated={validated}
+              className="padreBtn"
+            >
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -155,8 +215,9 @@ export default function UserProfile() {
                   onChange={handleChange}
                 />
               </Form.Group>
+              {updateError && <p style={{ color: "red" }}>{updateError}</p>}
               <br />
-              <Button variant="primary"  type="submit">
+              <Button variant="primary" type="submit">
                 Subir Cambios
               </Button>
             </Form>

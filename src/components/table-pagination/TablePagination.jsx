@@ -9,7 +9,7 @@ export default function TablePagination({
   onChange,
 }) {
   let offsetStart;
-  console.log({ count, limit, page, totalPages });
+  // console.log({ count, limit, page, totalPages });
 
   if (page == totalPages) {
     offsetStart = count - limit + 1;

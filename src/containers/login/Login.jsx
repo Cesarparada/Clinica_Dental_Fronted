@@ -4,22 +4,15 @@ import { updateAuthStoreStateLogIn } from "../../features/authentication/updateA
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
+import validator from "validator";
 
 export default function Login() {
-  const initialFormValues = {
-    email: "pepe@correo.com",
-    password: "12345678",
-  };
-
+ 
   // HOOKS
   const navigate = useNavigate();
-
-  const [formValues, setFormValues] = useState(initialFormValues);
-
+  const [formValues, setFormValues] = useState({});
   const [loginError, setLoginError] = useState(null);
-
   const authState = useSelector((state) => state.auth);
-
   const isAdmin = authState.userInfo.role == "admin";
 
   useEffect(() => {
@@ -35,12 +28,25 @@ export default function Login() {
       email: formValues.email,
       password: formValues.password,
     };
+    
+
+  if (
+    validator.isEmail(credentials.email) &&
+    validator.isByteLength(credentials.password, { min: 8, max: undefined })
+  ) {
     login(credentials);
-  };
+  } else if (!validator.isEmail(credentials.email)) {
+    setLoginError("Debes introducir un correo real");
+  } else if (
+    !validator.isByteLength(credentials.password, { min: 8, max: undefined })
+  ) {
+    setLoginError("La contraseña debe contener mínimo 8 caracteres");
+  }
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
+    // console.log(name, value);
     setFormValues({
       ...formValues,
       [name]: value, //key: value
@@ -51,7 +57,7 @@ export default function Login() {
   const login = async (credentials) => {
     try {
       const response = await authService.login(credentials);
-
+      
       const token = response.token;
 
       setLoginError(null);
@@ -102,4 +108,5 @@ export default function Login() {
       </div>
     </div>
   );
-}
+
+  }
