@@ -1,23 +1,3 @@
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     updateProfile(authState.userToken, formValues);
-//     const credentials = {
-//       password: formValues.password,
-//     };
-//     const form = e.currentTarget;
-//     if(form.checkValidity() === false){
-
-//     }if (
-//     validator.isByteLength(credentials.password, { min: 8, max: undefined })
-//   ) {
-//     updateProfile(authState.userToken, formValues);
-
-//   } else if (
-//     !validator.isByteLength(credentials.password, { min: 8, max: undefined })
-//   ) {
-//     setUpdateError("La contraseña debe contener mínimo 8 caracteres");
-//   }
-// };
 import React, { useEffect, useState } from "react";
 import "./UserProfile.scss";
 import userService from "../../_services/userService";
