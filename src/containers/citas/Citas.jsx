@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import citaService from "../../_services/citaService";
 import { useSelector } from "react-redux";
