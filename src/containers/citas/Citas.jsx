@@ -262,7 +262,7 @@ export default function Citas() {
                       {formUpdateCita && (
                         <Form onSubmit={handleSubmitUpdate}>
                           <Form.Group>
-                            <Form.Label></Form.Label>
+                            
                             <Form.Label>Identificador de cita</Form.Label>
                             <Form.Control
                               type="text"
